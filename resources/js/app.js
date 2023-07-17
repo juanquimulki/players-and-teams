@@ -6,7 +6,11 @@
 
 require('./bootstrap');
 
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 window.Vue = require('vue').default;
+Vue.use(require('bootstrap-vue'));
 
 /**
  * The following block of code may be used to automatically register your

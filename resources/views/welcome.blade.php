@@ -3,9 +3,10 @@
     <head>
     </head>
     <body>
-        <h1>Hello World!</h1>
-
         <div id="app">
+            <h1>Hello World!</h1>
+            
+            <b-button>Button</b-button>
             <example-component></example-component>
         </div>
     </body>
