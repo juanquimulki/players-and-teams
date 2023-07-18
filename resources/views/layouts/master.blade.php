@@ -10,8 +10,11 @@
         </style>
     </head>
     <body>
-        <div class="content">
-            @yield('content')
+        <div id="app" class="container">
+            <navbar-component></navbar-component>
+            <div class="content">
+                @yield('content')
+            </div>
         </div>
     </body>
 </html>
