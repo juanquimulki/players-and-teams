@@ -8,7 +8,7 @@
 <script>
     export default {
         name: 'players-table',
-        props: ['items', 'fields'],
+        props: ['items'],
         data() {
             return {
                 fieldsToShow: [
