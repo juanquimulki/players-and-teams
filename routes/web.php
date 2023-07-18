@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
 
-Route::get('/', function () {
-    return view('main');
-});
-Route::get('/user/{id}', [UserController::class, 'show']);
+// Route::get('/', function () {
+//     return view('main');
+// });
+Route::get('/', [UserController::class, 'show']);

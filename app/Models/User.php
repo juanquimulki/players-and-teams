@@ -1,33 +1,20 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 class User extends Model
 {
     public $timestamps = false;
 
-    /**
-     * Players only local scope
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeOfPlayers($query): Builder
+    public function scopeOfPlayers()
     {
-        return $query->where('user_type', 'player');
+        return User::where('user_type', 'player')->get();
     }
 
-    public function getIsGoalieAttribute(): bool
+    public function getValue(): int
     {
-        return (bool) $this->can_play_goalie;
-    }
-
-    public function getFullnameAttribute(): string
-    {
-        return Str::title($this->first_name . ' ' . $this->last_name);
+        return 12;
     }
 }

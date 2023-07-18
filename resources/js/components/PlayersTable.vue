@@ -1,0 +1,33 @@
+<template>
+    <div class="container">
+        <b-table striped hover :items="items" :fields="fieldsToShow">          
+        </b-table>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: 'players-table',
+        props: ['items', 'fields'],
+        data() {
+            return {
+                fieldsToShow: [
+                    'id',
+                    'first_name',
+                    'last_name',
+                    'ranking',
+                    {
+                        key: 'can_play_goalie',
+                        label: 'Can Play Goalie',
+                        formatter: (value, key, item) => {
+                            return value == 1 ? "Yes" : "No"
+                        }
+                    }
+                ]
+            }
+        },
+        methods: {
+
+        }
+    }
+</script>
