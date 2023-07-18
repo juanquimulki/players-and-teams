@@ -17,10 +17,10 @@
                     'last_name',
                     'ranking',
                     {
-                        key: 'can_play_goalie',
-                        label: 'Can Play Goalie',
+                        key: 'is_goalie',
+                        label: 'Is Goalie',
                         formatter: (value, key, item) => {
-                            return value == 1 ? "Yes" : "No"
+                            return value ? "Yes" : "No"
                         }
                     }
                 ]

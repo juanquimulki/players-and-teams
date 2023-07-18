@@ -3,23 +3,29 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class User extends Model
 {
     public $timestamps = false;
-    protected $appends = ['full_name'];
+    protected $appends = ['full_name', 'is_goalie'];
 
-    public function getFullNameAttribute()
+    public function getFullNameAttribute() : string
     {
-        return "{$this->first_name} {$this->last_name}";
+        return Str::title("{$this->first_name} {$this->last_name}");
     }
 
-    public function scopeOfPlayers()
+    public function getIsGoalieAttribute(): bool
+    {
+        return (bool) $this->can_play_goalie;
+    }
+
+    public function scopeOfPlayers() : object
     {
         return User::where('user_type', 'player')->get();
     }
 
-    public function getPlayers()
+    public function getPlayers() : object
     {
         return User::where('id', '>=', 77)->get();
     }
