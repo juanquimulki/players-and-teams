@@ -4,5 +4,5 @@
 @section('content')
     <h1>Available Players</h1>
 
-    <players-table :items={{ $players }}></players-table>
+    <players-table :items="{{ $players }}"></players-table>
 @stop

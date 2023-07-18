@@ -27,7 +27,7 @@
     }
 </script>
 
-<style>
+<style scoped>
     th[role=columnheader] {
         background-color: #E9ECEF;
     }
