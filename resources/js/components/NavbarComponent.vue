@@ -2,8 +2,8 @@
     <div class="navbar">
         Players and Teams
         <div>
-            <b-button>Go to Players</b-button>
-            <b-button>Go to Teams</b-button>
+            <b-button href="players">Go to Players</b-button>
+            <b-button href="teams">Go to Teams</b-button>
         </div>
     </div>
 </template>
