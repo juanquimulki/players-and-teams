@@ -8,6 +8,8 @@ class Team
 {
     private $name;
     private $size;
+    private $totalRanking;
+    private $goalies;
     private $players;
 
     public function __construct()
@@ -16,7 +18,9 @@ class Team
         $faker->addProvider(new FakerTeamNamesProvider($faker));
 
         $this->name = $faker->teamName;
-        $this->size = 0;
+        $this->size = 12;
+        $this->totalRanking = 21;
+        $this->goalies = 13;
         $this->players = [];
     }
 

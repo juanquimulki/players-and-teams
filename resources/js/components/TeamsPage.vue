@@ -5,6 +5,20 @@
             <div>
                 <team-table :items="team.players"></team-table>
             </div>
+            <div class="team-results">
+                <div class="row">
+                    <div class="col">Team Size:</div>
+                    <div class="col team-results-value">{{ team.size }}</div>
+                </div>
+                <div class="row">
+                    <div class="col">Total Ranking:</div>
+                    <div class="col team-results-value">{{ team.totalRanking }}</div>
+                </div>
+                <div class="row">
+                    <div class="col">Goalies:</div>
+                    <div class="col team-results-value">{{ team.goalies }}</div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -22,10 +36,20 @@
 <style scoped>
     .team-name {
         background-color: #9A8C98;
-        color: white;
-        padding: 10px;
+        color: #FFFFFF;
+        padding: 15px;
         font-weight: 500;
-        margin: 5px;
+        margin: 15px;
         border-radius: 3px;
+    }
+    .team-results {
+        padding: 10px;
+        background-color: #C9ADA7;
+        color: #FFFFFF;
+        font-weight: 500;
+        border-radius: 3px;
+    }
+    .team-results-value {
+        text-align: right;
     }
 </style>
