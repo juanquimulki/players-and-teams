@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\TeamController;
+use App\Http\Controllers\TournamentController;
 
 Route::redirect('/', '/players');
-Route::get('/players', [UserController::class, 'show']);
-Route::get('/teams',   [TeamController::class, 'show']);
+Route::get('/players', [UserController::class,       'show']);
+Route::get('/teams',   [TournamentController::class, 'generate']);

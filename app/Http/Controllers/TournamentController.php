@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
-use App\Models\User;
-use App\Models\Team;
 use App\Models\Tournament;
+use App\Models\User;
+use Illuminate\View\View;
 
-class TeamController extends Controller
+class TournamentController extends Controller
 {
-    public function show(): View
+    public function generate() : View
     {
         $goalies = User::getPlayers(true);
         $players = User::getPlayers(false);
