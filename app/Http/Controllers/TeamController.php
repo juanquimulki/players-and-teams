@@ -10,27 +10,38 @@ class TeamController extends Controller
 {
     public function show(): View
     {
-        //$allPlayers = User::scopeOfPlayers();
-        $allPlayers = User::getAllPlayers();
-        $players    = User::getPlayers(false);
+        // TODO: check records and counts
         $goalies    = User::getPlayers(true);
+        $players    = User::getPlayers(false);
 
         // TODO: check if it's even
-        //$numOfTeams = (int) ((count($players) + count($goalies)) / 18);
-        $numOfTeams = (int) (count($allPlayers) / 18);
-
-//        foreach ($allPlayers as $player) {
-//            echo $player->full_name . " " . $player->ranking . " " . "<br>";
-//        }
+        $numOfTeams = (int) ((count($players) + count($goalies)) / 18);
 
         $teams = [];
         for ($i = 0; $i < $numOfTeams; $i++) {
             $teams[] = new Team();
         }
 
-        $index = 0;
-        $status = "ASC";
-        foreach ($allPlayers as $player) {
+        try {
+            for ($i = 0; $i < $numOfTeams; $i++) {
+                $teams[$i]->assignPlayer($goalies[$i]);
+                unset($goalies[$i]);
+            }
+        } catch (\Exception $e) {
+            if (str_contains($e->getMessage(), "Undefined offset")) {
+                throw new \Exception("Not enough goalies");
+            }
+        }
+
+        foreach ($goalies as $goalie) {
+            $players[] = $goalie;
+        }
+
+        $players = $players->sortByDesc("ranking");
+
+        $index = $numOfTeams - 1;
+        $status = "DESC";
+        foreach ($players as $player) {
             $teams[$index]->assignPlayer($player);
 
             if ($status == "ASC") {
@@ -52,6 +63,7 @@ class TeamController extends Controller
             $teams[$i] = $teams[$i]->jsonSerialize();
         }
 
+        // TODO: divide generation and viewing
         return view('team', [
             'teams' => $teams,
         ]);
