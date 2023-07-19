@@ -8,6 +8,7 @@ class Team
 {
     private $name;
     private $size;
+    private $players;
 
     public function __construct()
     {
@@ -16,6 +17,11 @@ class Team
 
         $this->name = $faker->teamName;
         $this->size = 0;
+        $this->players = [];
+    }
+
+    public function setPlayers($players) {
+        $this->players = $players;
     }
 
     public function jsonSerialize() {

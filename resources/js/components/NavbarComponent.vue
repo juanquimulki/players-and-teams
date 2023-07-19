@@ -17,7 +17,7 @@
 <style scoped>
     .navbar {
         color: white;
-        background-color: #17A2B8;
+        background-color: #4A4E69;
         padding: 20px;
         font-size: 18px;
         border-radius: 5px;

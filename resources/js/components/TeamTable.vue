@@ -1,6 +1,9 @@
 <template>
     <div>
-        <b-table bordered small :items="items" :fields="fieldsToShow">          
+        <b-table bordered small :items="items" :fields="fieldsToShow">
+            <template #cell(is_goalie)="data">
+                <div class="is-goalie" v-if="data.item.is_goalie">✓</div>
+            </template>
         </b-table>
     </div>
 </template>
@@ -12,14 +15,14 @@
         data() {
             return {
                 fieldsToShow: [
-                    'full_name',
+                    {
+                        key: 'full_name',
+                        label: 'Name'
+                    },
                     'ranking',
                     {
                         key: 'is_goalie',
-                        label: 'Is Goalie',
-                        formatter: (value, key, item) => {
-                            return value ? "Yes" : ""
-                        }
+                        label: 'Goalie',
                     }
                 ]
             }
@@ -30,5 +33,8 @@
 <style scoped>
     th[role=columnheader] {
         background-color: #E9ECEF;
+    }
+    .is-goalie {
+        text-align: center;
     }
 </style>

@@ -17,6 +17,7 @@ class TeamController extends Controller
         $teams = [];
         for ($i = 0; $i < $numOfTeams; $i++) {
             $newTeam = new Team();
+            $newTeam->setPlayers(User::getPlayers());
             $teams[] = $newTeam->jsonSerialize();
         }
 

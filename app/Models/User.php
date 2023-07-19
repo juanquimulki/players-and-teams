@@ -27,6 +27,6 @@ class User extends Model
 
     public function getPlayers() : object
     {
-        return User::where('id', '>=', 77)->get();
+        return User::where('id', '>=', 1)->get();
     }
 }
