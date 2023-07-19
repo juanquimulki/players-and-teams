@@ -14,10 +14,6 @@
                     <div class="col">Total Ranking:</div>
                     <div class="col team-results-value">{{ team.totalRanking }}</div>
                 </div>
-                <div class="row">
-                    <div class="col">Goalies:</div>
-                    <div class="col team-results-value">{{ team.goalies }}</div>
-                </div>
             </div>
         </div>
     </div>

@@ -9,7 +9,6 @@ class Team
     private $name;
     private $size;
     private $totalRanking;
-    private $goalies;
     private $players;
 
     public function __construct()
@@ -18,14 +17,19 @@ class Team
         $faker->addProvider(new FakerTeamNamesProvider($faker));
 
         $this->name = $faker->teamName;
-        $this->size = 12;
-        $this->totalRanking = 21;
-        $this->goalies = 13;
         $this->players = [];
+        $this->size = 0;
+        $this->totalRanking = 0;
     }
 
     public function setPlayers($players) {
         $this->players = $players;
+    }
+
+    public function assignPlayer($player) {
+        $this->players[] = $player;
+        $this->size++;
+        $this->totalRanking += $player->ranking;
     }
 
     public function jsonSerialize() {
