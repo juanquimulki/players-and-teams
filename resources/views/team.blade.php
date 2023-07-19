@@ -4,5 +4,5 @@
 @section('content')
     <h1>Generated Teams</h1>
 
-    <team-table :items="{{ $players }}"></team-table>
+    <teams-page :items="{{ json_encode($teams) }}"></teams-page>
 @stop
