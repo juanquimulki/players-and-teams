@@ -23,9 +23,6 @@
     export default {
         name: 'teams-page',
         props: ['items'],
-        data() {
-            return {}
-        }
     }
 </script>
 

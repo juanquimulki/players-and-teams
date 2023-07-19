@@ -10,12 +10,12 @@ class TeamController extends Controller
 {
     public function show(): View
     {
-        // TODO: check records and counts
         $goalies    = User::getPlayers(true);
         $players    = User::getPlayers(false);
 
-        // TODO: check if it's even
-        $numOfTeams = (int) ((count($players) + count($goalies)) / 18);
+        $totalPlayers = $players->count() + $goalies->count();
+        $numOfTeams = (int) ($totalPlayers / 18);
+        $numOfTeams = $numOfTeams % 2 === 0 ? $numOfTeams : $numOfTeams - 1;
 
         $teams = [];
         for ($i = 0; $i < $numOfTeams; $i++) {
@@ -33,10 +33,7 @@ class TeamController extends Controller
             }
         }
 
-        foreach ($goalies as $goalie) {
-            $players[] = $goalie;
-        }
-
+        $players = $players->merge($goalies);
         $players = $players->sortByDesc("ranking");
 
         $index = $numOfTeams - 1;

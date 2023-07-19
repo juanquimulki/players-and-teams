@@ -16,9 +16,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TeamController;
 
-// Route::get('/', function () {
-//     return view('main');
-// });
 Route::redirect('/', '/players');
 Route::get('/players', [UserController::class, 'show']);
 Route::get('/teams',   [TeamController::class, 'show']);

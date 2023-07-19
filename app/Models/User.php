@@ -28,21 +28,8 @@ class User extends Model
     public function getPlayers(bool $isGoalie) : object
     {
         return User::where('user_type', 'player')
-            ->where('can_play_goalie',$isGoalie)
+            ->where('can_play_goalie', $isGoalie)
             ->orderByDesc('ranking')
             ->get();
     }
-
-    public function getAllPlayers() : object
-    {
-        return User::where('user_type', 'player')
-            ->orderBy('can_play_goalie', 'DESC')
-            ->orderBy('ranking', 'DESC')
-            ->get();
-    }
-
-//    public function getPlayers() : object
-//    {
-//        return User::where('id', '>=', 1)->get();
-//    }
 }
