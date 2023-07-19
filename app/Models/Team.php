@@ -22,10 +22,6 @@ class Team
         $this->totalRanking = 0;
     }
 
-    public function setPlayers($players) {
-        $this->players = $players;
-    }
-
     public function assignPlayer($player) {
         $this->players[] = $player;
         $this->size++;
