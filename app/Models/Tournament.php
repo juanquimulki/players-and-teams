@@ -20,9 +20,9 @@ class Tournament
         $numOfTeams = (int) ($totalPlayers / 18);
         $numOfTeams = $numOfTeams % 2 === 0 ? $numOfTeams : $numOfTeams - 1;
 
-        $this->teams = [];
+        $this->teams = collect([]);
         for ($i = 0; $i < $numOfTeams; $i++) {
-            $this->teams[] = new Team();
+            $this->teams->push(new Team());
         }
 
         try {
@@ -59,9 +59,9 @@ class Tournament
             }
         }
 
-        for ($i = 0; $i < $numOfTeams; $i++) {
-            $this->teams[$i] = $this->teams[$i]->jsonSerialize();
-        }
+//        for ($i = 0; $i < $numOfTeams; $i++) {
+//            $this->teams[$i] = $this->teams[$i]->jsonSerialize();
+//        }
     }
 
     public function getTeams() {

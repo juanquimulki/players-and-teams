@@ -6,10 +6,10 @@ use TeamNameGenerator\FakerProvider as FakerTeamNamesProvider;
 
 class Team
 {
-    private $name;
-    private $size;
-    private $totalRanking;
-    private $players;
+    public $name;
+    public $size;
+    public $totalRanking;
+    public $players;
 
     public function __construct()
     {
