@@ -32,15 +32,16 @@
         color: #FFFFFF;
         padding: 15px;
         font-weight: 500;
-        margin: 15px;
-        border-radius: 3px;
+        border-radius: 20px 20px 0px 0px;
+        min-height: 80px;
     }
     .team-results {
         padding: 10px;
         background-color: #C9ADA7;
         color: #FFFFFF;
         font-weight: 500;
-        border-radius: 3px;
+        border-radius: 0px 0px 5px 5px;
+        margin-top: -16px;
     }
     .team-results-value {
         text-align: right;
