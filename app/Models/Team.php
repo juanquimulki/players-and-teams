@@ -17,18 +17,18 @@ class Team
         $faker->addProvider(new FakerTeamNamesProvider($faker));
 
         $this->name = $faker->teamName;
-        $this->players = [];
+        $this->players = collect([]);
         $this->size = 0;
         $this->totalRanking = 0;
     }
 
     public function assignPlayer($player) {
-        $this->players[] = $player;
+        $this->players->push($player);
         $this->size++;
         $this->totalRanking += $player->ranking;
     }
 
-    public function jsonSerialize() {
-        return (object) get_object_vars($this);
-    }
+//    public function jsonSerialize() {
+//        return (object) get_object_vars($this);
+//    }
 }
