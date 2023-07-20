@@ -25,13 +25,7 @@ class TeamsRequirementsTest extends TestCase
     {
         $error = false;
         foreach ($this->teams as $team) {
-            $thereIsGoalie = false;
-            foreach ($team->players as $player) {
-                if ($player->is_goalie) {
-                    $thereIsGoalie = true;
-                    break;
-                }
-            }
+            $thereIsGoalie = $team->players->firstWhere("is_goalie", true);
             if (!$thereIsGoalie) {
                 $error = true;
                 break;
@@ -44,22 +38,9 @@ class TeamsRequirementsTest extends TestCase
     {
         $confidenceParameter = 4;
 
-        $max = $this->max_attribute_in_array($this->teams, "totalRanking");
-        $min = $this->min_attribute_in_array($this->teams, "totalRanking");
+        $min = $this->teams->min("totalRanking");
+        $max = $this->teams->max("totalRanking");
 
         $this->assertLessThanOrEqual($confidenceParameter,$max - $min);
-    }
-
-    private function max_attribute_in_array($array, $prop) {
-        return max(array_map(function($o) use($prop) {
-            return $o->$prop;
-        },
-        $array));
-    }
-    private function min_attribute_in_array($array, $prop) {
-        return min(array_map(function($o) use($prop) {
-            return $o->$prop;
-        },
-        $array));
     }
 }

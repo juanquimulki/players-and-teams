@@ -31,7 +31,7 @@ class PlayersIntegrityTest extends TestCase
         $tournament->generateTeams();
         $teams = $tournament->getTeams();
 
-        $this->assertGreaterThanOrEqual($this->goalies->count(), count($teams));
+        $this->assertGreaterThanOrEqual($this->goalies->count(), $teams->count());
     }
     public function testNumberOfTeamsAndNumberOfPlayersPerTeam ()
     {
@@ -40,11 +40,11 @@ class PlayersIntegrityTest extends TestCase
         $teams = $tournament->getTeams();
 
         // Calculate how many teams can be made so that there is an even number of teams
-        $this->assertTrue(count($teams) % 2 == 0,"even number of teams");
+        $this->assertTrue($teams->count() % 2 == 0,"even number of teams");
         // and they each have between 18-22 players.
         $error = false;
         foreach ($teams as $team) {
-            if (count($team->players) < 18 || count($team->players) > 22) {
+            if ($team->players->count() < 18 || $team->players->count() > 22) {
                 $error = true;
                 break;
             }
