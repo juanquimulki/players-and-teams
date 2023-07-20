@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Players & Teams - @yield('title')</title>
+        <link rel="icon" href="{{ asset('favicon.png') }}">
 
         <style>
             .content {
