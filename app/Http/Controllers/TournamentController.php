@@ -3,16 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tournament;
-use App\Models\User;
+use App\Services\UserService;
 use Illuminate\View\View;
 
 class TournamentController extends Controller
 {
+    protected $userService;
+
+    public function __construct(UserService $userService) {
+        $this->userService = $userService;
+    }
+
     public function generate() : View
     {
         // Get data from models
-        $goalies = User::getPlayers(true);
-        $players = User::getPlayers(false);
+        $goalies = $this->userService->getPlayersByGoalie(true);
+        $players = $this->userService->getPlayersByGoalie(false);
 
         // Call the algorithm
         $tournament = new Tournament($goalies, $players);

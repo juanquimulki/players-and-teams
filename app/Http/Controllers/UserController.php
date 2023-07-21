@@ -2,15 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\UserService;
 use Illuminate\View\View;
-use App\Models\User;
 
 class UserController extends Controller
 {
+    protected $userService;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     public function show(): View
     {
         return view('user', [
-            'players' => User::scopeOfPlayers(),
+            'players' => $this->userService->getAllPlayers(),
         ]);
     }
 }
