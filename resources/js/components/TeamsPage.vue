@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div class="col-3" v-for="(team, index) in items" :key="index">
+        <div class="col" v-for="(team, index) in items" :key="index">
             <div class="team-name">Team #{{ index + 1 }}: {{ team.name }}</div>
             <div>
                 <team-table :items="team.players"></team-table>
