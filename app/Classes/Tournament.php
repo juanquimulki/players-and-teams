@@ -82,11 +82,15 @@ class Tournament
         foreach ($this->players as $player) {
             $maxRanking = $this->teams->max("totalRanking");
             $teamSelected = $this->teams->where("totalRanking", $maxRanking)->first();
-            $id = $teamSelected->id;
+            $idMaxRanking = $teamSelected->id;
+
+            $maxSize = $this->teams->max("size");
+            $teamSelected = $this->teams->where("size", $maxSize)->first();
+            $idMaxSize = $teamSelected->id;
 
             do {
                 $index = rand(0, $numOfTeams - 1);
-            } while ($index == $id || $this->teams[$index]->size >= 22);
+            } while ($index == $idMaxRanking || $index == $idMaxSize);
 
             $this->teams[$index]->assignPlayer($player);
         }
