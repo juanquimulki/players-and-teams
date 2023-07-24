@@ -32,8 +32,4 @@ class Team
         // Sum the player ranking to team ranking
         $this->totalRanking += $player->ranking;
     }
-
-//    public function jsonSerialize() {
-//        return (object) get_object_vars($this);
-//    }
 }

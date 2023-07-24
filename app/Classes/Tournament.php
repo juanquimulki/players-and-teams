@@ -16,26 +16,11 @@ class Tournament
 
     public function generateTeams()
     {
-        // Get number of players
-        $totalPlayers = $this->players->count() + $this->goalies->count();
-        // Determine number of teams
-        $numOfTeams = (int) ($totalPlayers / 18);
-        // Check it's an even number
-        $numOfTeams = $numOfTeams % 2 === 0 ? $numOfTeams : $numOfTeams - 1;
-
-        // Create a collection of new teams
-        $this->teams = collect([]);
-        for ($i = 0; $i < $numOfTeams; $i++) {
-            $this->teams->push(new Team());
-        }
+        $numOfTeams = $this->getNumberOfTeams();
+        $this->createTeamsCollection($numOfTeams);
 
         try {
-            // First assign one goalie to each team
-            for ($i = 0; $i < $numOfTeams; $i++) {
-                $this->teams[$i]->assignPlayer($this->goalies[$i]);
-                // Remove the assigned goalie
-                unset($this->goalies[$i]);
-            }
+            $this->assignGoaliesToTeams();
         } catch (\Exception $e) {
             // If this throws an "Undefined offset error", it means there aren't enough goalies
             if (str_contains($e->getMessage(), "Undefined offset")) {
@@ -49,7 +34,44 @@ class Tournament
         $this->players = $this->players->sortByDesc("ranking");
 
         // Assign players from the sorted collection
-        // going in one direction and the other to assign them fairly
+        $this->assignPlayersToTeams();
+
+    }
+
+    private function getNumberOfTeams() : int
+    {
+        // Get number of players
+        $totalPlayers = $this->players->count() + $this->goalies->count();
+        // Determine number of teams
+        $numOfTeams = (int) ($totalPlayers / 18);
+        // Check it's an even number and return
+        return $numOfTeams % 2 === 0 ? $numOfTeams : $numOfTeams - 1;
+    }
+
+
+    private function createTeamsCollection(int $numOfTeams)
+    {
+        // Create a collection of new teams
+        $this->teams = collect([]);
+        for ($i = 0; $i < $numOfTeams; $i++) {
+            $this->teams->push(new Team());
+        }
+    }
+
+    private function assignGoaliesToTeams()
+    {
+        $numOfTeams = $this->teams->count();
+
+        // First assign one goalie to each team
+        for ($i = 0; $i < $numOfTeams; $i++) {
+            $this->teams[$i]->assignPlayer($this->goalies[$i]);
+            // Remove the assigned goalie
+            unset($this->goalies[$i]);
+        }
+    }
+
+    private function assignPlayersToTeams() {
+        $numOfTeams = $this->teams->count();
         $index = $numOfTeams - 1;
         $status = "DESC";
         foreach ($this->players as $player) {
@@ -69,10 +91,6 @@ class Tournament
                 }
             }
         }
-
-//        for ($i = 0; $i < $numOfTeams; $i++) {
-//            $this->teams[$i] = $this->teams[$i]->jsonSerialize();
-//        }
     }
 
     public function getTeams() {
