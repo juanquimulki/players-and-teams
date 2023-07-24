@@ -23,7 +23,7 @@ class Tournament
             $this->assignGoaliesToTeams();
         } catch (\Exception $e) {
             // If this throws an "Undefined offset error", it means there aren't enough goalies
-            if (str_contains($e->getMessage(), "Undefined offset")) {
+            if (str_contains($e->getMessage(), "Undefined array")) {
                 throw new \Exception("Not enough goalies");
             }
         }
@@ -54,42 +54,41 @@ class Tournament
         // Create a collection of new teams
         $this->teams = collect([]);
         for ($i = 0; $i < $numOfTeams; $i++) {
-            $this->teams->push(new Team());
+            $this->teams->push(new Team($i));
         }
     }
 
     private function assignGoaliesToTeams()
     {
-        $numOfTeams = $this->teams->count();
+        $numOfTeams   = $this->teams->count();
+        $numOfGoalies = $this->goalies->count();
+        $this->goalies = $this->goalies->shuffle();
 
         // First assign one goalie to each team
         for ($i = 0; $i < $numOfTeams; $i++) {
-            $this->teams[$i]->assignPlayer($this->goalies[$i]);
-            // Remove the assigned goalie
-            unset($this->goalies[$i]);
+            $index = rand(0, $numOfGoalies - $i - 1);
+
+            $this->teams[$i]->assignPlayer($this->goalies[$index]);
+            // Remove the assigned goalie and reindex
+            unset($this->goalies[$index]);
+            $this->goalies = $this->goalies->values();
         }
     }
 
     private function assignPlayersToTeams() {
         $numOfTeams = $this->teams->count();
-        $index = $numOfTeams - 1;
-        $status = "DESC";
-        foreach ($this->players as $player) {
-            $this->teams[$index]->assignPlayer($player);
+        $this->players = $this->players->shuffle();
 
-            if ($status == "ASC") {
-                $index++;
-                if ($index == $numOfTeams) {
-                    $index--;
-                    $status = "DESC";
-                }
-            } elseif ($status == "DESC") {
-                $index--;
-                if ($index == -1) {
-                    $index = 0;
-                    $status = "ASC";
-                }
-            }
+        foreach ($this->players as $player) {
+            $maxRanking = $this->teams->max("totalRanking");
+            $teamSelected = $this->teams->where("totalRanking", $maxRanking)->first();
+            $id = $teamSelected->id;
+
+            do {
+                $index = rand(0, $numOfTeams - 1);
+            } while ($index == $id || $this->teams[$index]->size >= 22);
+
+            $this->teams[$index]->assignPlayer($player);
         }
     }
 

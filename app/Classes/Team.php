@@ -6,18 +6,20 @@ use TeamNameGenerator\FakerProvider as FakerTeamNamesProvider;
 
 class Team
 {
+    public $id;
     public $name;
     public $size;
     public $totalRanking;
     public $players;
 
-    public function __construct()
+    public function __construct($id)
     {
         // Get a funny team name
         $faker = Faker::create();
         $faker->addProvider(new FakerTeamNamesProvider($faker));
 
         // Initialize team values
+        $this->id = $id;
         $this->name = $faker->teamName;
         $this->players = collect([]);
         $this->size = 0;
