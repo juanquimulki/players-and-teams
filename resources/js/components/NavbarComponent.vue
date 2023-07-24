@@ -23,4 +23,15 @@
         border-radius: 5px;
         margin-top: 5px;
     }
+    a {
+        background-color: #9ca3af;
+        color: white;
+        text-decoration: none;
+        margin: 10px;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    a:hover {
+        font-weight: 500;
+    }
 </style>

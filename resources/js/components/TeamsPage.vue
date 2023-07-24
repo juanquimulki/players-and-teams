@@ -41,7 +41,6 @@
         color: #FFFFFF;
         font-weight: 500;
         border-radius: 0px 0px 5px 5px;
-        margin-top: -16px;
     }
     .team-results-value {
         text-align: right;

@@ -61,3 +61,21 @@
         }
     }
 </script>
+
+<style scoped>
+    table {
+        margin-top: 20px;
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid black;
+    }
+    th {
+        text-align: center;
+        padding: 10px;
+    }
+    td {
+        padding: 5px;
+    }
+</style>

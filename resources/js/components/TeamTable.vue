@@ -57,13 +57,23 @@
 </script>
 
 <style scoped>
-    th[role=columnheader] {
-        background-color: #E9ECEF;
-    }
     .is-goalie {
         text-align: center;
     }
     table {
         font-size: 12px;
+        width: 100%;
+        border-collapse: collapse;
+        border-top: none;
+    }
+    th, td {
+        border: 1px solid black;
+    }
+    th {
+        text-align: center;
+        padding: 7px;
+    }
+    td {
+        padding: 3px;
     }
 </style>
