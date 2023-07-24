@@ -9,6 +9,7 @@
                 margin: 50px 40px 30px 40px;
             }
         </style>
+        @vite('resources/js/app.js')
     </head>
     <body>
         <div id="app" class="container">
@@ -19,4 +20,4 @@
         </div>
     </body>
 </html>
-<script src="{{ mix('/js/app.js') }}"></script>
+{{--<script src="{{ mix('/js/app.js') }}"></script>--}}
