@@ -32,7 +32,7 @@ class PlayersIntegrityTest extends TestCase
         $tournament->generateTeams();
         $teams = $tournament->getTeams();
 
-        $this->assertGreaterThanOrEqual($this->goalies->count(), $teams->count());
+        $this->assertGreaterThanOrEqual($teams->count(), $this->goalies->count());
     }
     public function testNumberOfTeamsAndNumberOfPlayersPerTeam ()
     {

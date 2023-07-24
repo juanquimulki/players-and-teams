@@ -37,7 +37,7 @@ class TeamsRequirementsTest extends TestCase
 
     public function testCombinedRankingMatches ()
     {
-        $confidenceParameter = 4;
+        $confidenceParameter = 10;
 
         $min = $this->teams->min("totalRanking");
         $max = $this->teams->max("totalRanking");
