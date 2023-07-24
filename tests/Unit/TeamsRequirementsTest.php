@@ -14,8 +14,9 @@ class TeamsRequirementsTest extends TestCase
     {
         parent::setUp();
 
-        $goalies = User::getPlayers(true);
-        $players = User::getPlayers(false);
+        $user = new User();
+        $goalies = $user->getPlayers(true);
+        $players = $user->getPlayers(false);
         $tournament = new Tournament($goalies, $players);
         $tournament->generateTeams();
         $this->teams = $tournament->getTeams();

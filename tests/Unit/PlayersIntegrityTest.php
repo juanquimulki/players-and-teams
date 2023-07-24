@@ -15,8 +15,9 @@ class PlayersIntegrityTest extends TestCase
     {
         parent::setUp();
 
-        $this->goalies = User::getPlayers(true);
-        $this->players = User::getPlayers(false);
+        $user = new User();
+        $this->goalies = $user->getPlayers(true);
+        $this->players = $user->getPlayers(false);
     }
 
     public function testGoaliePlayersExist ()
