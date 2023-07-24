@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tournament;
+use App\Classes\Tournament;
 use App\Services\UserService;
 use Illuminate\View\View;
 

@@ -2,9 +2,9 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
+use App\Classes\Tournament;
 use App\Models\User;
-use App\Models\Tournament;
+use Tests\TestCase;
 
 class TeamsRequirementsTest extends TestCase
 {

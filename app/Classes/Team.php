@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Classes;
 use Faker\Factory as Faker;
 use TeamNameGenerator\FakerProvider as FakerTeamNamesProvider;
 
