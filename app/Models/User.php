@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -20,9 +21,9 @@ class User extends Model
         return (bool) $this->can_play_goalie;
     }
 
-    public function scopeOfPlayers() : object
+    public function scopePlayers(Builder $query): void
     {
-        return User::where('user_type', 'player')->get();
+        $query->where('user_type', 'player');
     }
 
     public function getPlayers(bool $isGoalie) : object

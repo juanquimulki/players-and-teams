@@ -8,8 +8,7 @@ class UserService {
 
     public function getAllPlayers() : object
     {
-        $user = new User();
-        return $user->scopeOfPlayers();
+        return User::players()->get();
     }
 
     public function getPlayersByGoalie(bool $isGoalie) : object
