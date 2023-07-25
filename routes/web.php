@@ -18,4 +18,4 @@ use App\Http\Controllers\TournamentController;
 
 Route::redirect('/', '/players');
 Route::get('/players', [UserController::class,       'show']);
-Route::get('/teams',   [TournamentController::class, 'generate']);
+Route::get('/teams',   [TournamentController::class, 'show']);

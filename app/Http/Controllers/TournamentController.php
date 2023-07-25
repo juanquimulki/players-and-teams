@@ -13,7 +13,14 @@ class TournamentController extends Controller
         $this->tournamentService = $this->tournamentService;
     }
 
-    public function generate() : View
+    public function show() : View
+    {
+        return view('team', [
+            'teams' => self::generate(),
+        ]);
+    }
+
+    private function generate() : object
     {
         // Get data from models
         $goalies = $this->userService->getPlayersByGoalie(true);
@@ -23,8 +30,6 @@ class TournamentController extends Controller
         $teams = $this->tournamentService->generateTeams($goalies, $players);
 
         // Return teams object to view
-        return view('team', [
-            'teams' => $teams,
-        ]);
+        return $teams;
     }
 }

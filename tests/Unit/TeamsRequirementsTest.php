@@ -2,7 +2,6 @@
 
 namespace Tests\Unit;
 
-use App\Classes\Tournament;
 use Tests\TestCase;
 
 class TeamsRequirementsTest extends TestCase
