@@ -36,6 +36,7 @@ class Tournament
         // Assign players from the sorted collection
         $this->assignPlayersToTeams();
 
+        return $this->teams;
     }
 
     private function getNumberOfTeams() : int
@@ -47,7 +48,6 @@ class Tournament
         // Check it's an even number and return
         return $numOfTeams % 2 === 0 ? $numOfTeams : $numOfTeams - 1;
     }
-
 
     private function createTeamsCollection(int $numOfTeams)
     {
