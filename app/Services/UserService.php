@@ -2,9 +2,10 @@
 
 namespace App\Services;
 
+use App\Contracts\IUserService;
 use App\Models\User;
 
-class UserService {
+class UserService implements IUserService {
 
     public function getAllPlayers() : object
     {
