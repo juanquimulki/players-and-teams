@@ -8,21 +8,21 @@ use Tests\TestCase;
 class TeamsRequirementsTest extends TestCase
 {
     protected $userService;
+    protected $tournamentService;
 
     function setUp(): void
     {
         parent::setUp();
 
         $this->userService = $this->app->make('App\Contracts\IUserService');
+        $this->tournamentService = $this->app->make('App\Contracts\ITournamentService');
     }
 
     public function testAtLeastOneGoaliePlayerInEachTeam ()
     {
         $goalies = $this->userService->getPlayersByGoalie(true);
         $players = $this->userService->getPlayersByGoalie(false);
-        $tournament = new Tournament($goalies, $players);
-        $tournament->generateTeams();
-        $teams = $tournament->getTeams();
+        $teams = $this->tournamentService->generateTeams($goalies, $players);
 
         $error = false;
         foreach ($teams as $team) {
@@ -39,9 +39,7 @@ class TeamsRequirementsTest extends TestCase
     {
         $goalies = $this->userService->getPlayersByGoalie(true);
         $players = $this->userService->getPlayersByGoalie(false);
-        $tournament = new Tournament($goalies, $players);
-        $tournament->generateTeams();
-        $teams = $tournament->getTeams();
+        $teams = $this->tournamentService->generateTeams($goalies, $players);
 
         $confidenceParameter = 10;
 

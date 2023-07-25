@@ -2,18 +2,19 @@
 
 namespace Tests\Unit;
 
-use App\Classes\Tournament;
 use Tests\TestCase;
 
 class PlayersIntegrityTest extends TestCase
 {
     protected $userService;
+    protected $tournamentService;
 
     function setUp(): void
     {
         parent::setUp();
 
         $this->userService = $this->app->make('App\Contracts\IUserService');
+        $this->tournamentService = $this->app->make('App\Contracts\ITournamentService');
     }
 
     public function testGoaliePlayersExist ()
@@ -29,9 +30,7 @@ class PlayersIntegrityTest extends TestCase
         $players = $this->userService->getPlayersByGoalie(false);
 
         // Check that there are at least as many players who can play goalie as there are teams
-        $tournament = new Tournament($goalies, $players);
-        $tournament->generateTeams();
-        $teams = $tournament->getTeams();
+        $teams = $this->tournamentService->generateTeams($goalies, $players);
 
         $this->assertGreaterThanOrEqual($teams->count(), $goalies->count());
     }
@@ -40,9 +39,7 @@ class PlayersIntegrityTest extends TestCase
         $goalies = $this->userService->getPlayersByGoalie(true);
         $players = $this->userService->getPlayersByGoalie(false);
 
-        $tournament = new Tournament($goalies, $players);
-        $tournament->generateTeams();
-        $teams = $tournament->getTeams();
+        $teams = $this->tournamentService->generateTeams($goalies, $players);
 
         // Calculate how many teams can be made so that there is an even number of teams
         $this->assertTrue($teams->count() % 2 == 0,"even number of teams");
